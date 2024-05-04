@@ -21,6 +21,16 @@
         android:src="@drawable/login_obrazok" />
 
 
+    <EditText
+        android:id= "@+id/nickname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:hint="Meno"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:inputType="textPersonName"
+        />
 
     <EditText
         android:id= "@+id/email"

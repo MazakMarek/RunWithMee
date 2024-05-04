@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 class LoginActivity : ComponentActivity() {
 
     private lateinit var binding: LoginPageBinding
-    private lateinit var firebaseAuth: FirebaseAuth
+    private val firebaseAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ class LoginActivity : ComponentActivity() {
             }else {
                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                    if (it.isSuccessful) {
-                       startActivity(Intent(this, MainActivity::class.java))
+                       startActivity(Intent(this, MainPage::class.java))
                    }else {
                        binding.password.error = "Incorrect password"
                    }
