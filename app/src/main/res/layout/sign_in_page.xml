@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="top|center"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Prihlásenie"
+        android:text="Sign in"
         android:layout_gravity="center"
         android:textSize="50sp"
         android:textAlignment="center"
@@ -24,6 +23,7 @@
 
 
     <EditText
+        android:id= "@+id/email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="10dp"
@@ -31,10 +31,12 @@
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:inputType="textEmailAddress"
-        android:id= "@+id/email"
+
         />
 
+
     <EditText
+        android:id= "@+id/password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="10dp"
@@ -42,22 +44,38 @@
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:inputType="textPassword"
-        android:id= "@+id/password"
+
+
+        />
+    <EditText
+        android:id= "@+id/confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:hint="Confirm Password"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:inputType="textPassword"
+
+
         />
 
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/SignIn_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="30dp"
         android:rotation="0"
+        android:layout_gravity="center"
         android:text="Login" />
 
     <TextView
-        android:id="@+id/without_account"
+        android:id="@+id/already_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Don't have an account yet? Sign up"
+        android:text="Already have an account? Log-in"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:textSize="16sp"
