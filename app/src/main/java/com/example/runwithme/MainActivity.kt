@@ -1,6 +1,8 @@
 package com.example.runwithme
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -17,19 +19,36 @@ import androidx.compose.ui.unit.dp
 import com.example.runwithme.ui.theme.RunWithMeTheme
 
 class MainActivity : ComponentActivity() {
+
+    lateinit var userEmail: EditText
+    lateinit var userPassword: EditText
+    lateinit var loginButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            RunWithMeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                            name = "Android",
-                            modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.login_page)
+
+        userEmail = findViewById(R.id.email)
+        userPassword = findViewById(R.id.password)
+        loginButton = findViewById(R.id.login_button)
+
+        loginButton.setOnClickListener {
+            val email = userEmail.text.toString()
+            val password = userPassword.text.toString()
         }
+
+
+//        enableEdgeToEdge()
+//        setContent {
+//            RunWithMeTheme {
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//                    Greeting(
+//                            name = "Android",
+//                            modifier = Modifier.padding(innerPadding)
+//                    )
+//                }
+//            }
+//        }
     }
 }
 
@@ -47,6 +66,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     RunWithMeTheme {
-        Greeting("Katka")
+        Greeting("Marek")
     }
 }
