@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/account_circle_main_page" />
+
+    <TextView
+        android:id="@+id/nickname_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="nickname"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_one_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="nick" />
+
+            <Button
+                android:id="@+id/vity_button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0"
+                android:rotation="0"
+                android:text="start activity" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+    />
+
+
+    <Button
+        android:id="@+id/startactivity_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_weight="0"
+        android:rotation="0"
+        android:text="start activity" />
+
+</LinearLayout>

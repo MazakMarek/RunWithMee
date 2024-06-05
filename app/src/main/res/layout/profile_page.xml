@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/account_circle_main_page" />
+
+    <TextView
+        android:id="@+id/nickname_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="My Profile"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="normal" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/textNickname"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Nickname: "
+            android:textSize="18sp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        >
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Email: "
+        android:textSize="18sp"
+        />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Goals"
+        android:textSize="22sp"
+        android:layout_marginTop="30dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        ></TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        >
+
+
+        <TextView
+            android:id="@+id/textViewRuning"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Running: "
+            android:textSize="18sp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/textViewRunningDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You run 5 km from 10 km"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewRuningTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You run for 5 hours"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <ProgressBar
+                    android:id="@+id/progressBarHorizontal"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:max="100"
+                    android:progress="38"
+                    android:progressDrawable="@drawable/custom_progressbar" />
+
+                <TextView
+                    android:id="@+id/progressText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="38%"
+                    android:textColor="@color/black"
+                    android:textSize="26sp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        >
+
+
+        <TextView
+            android:id="@+id/textViewHiking"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Running: "
+            android:textSize="18sp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/textViewHikingDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You run 5 km from 10 km"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewHikingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You run for 5 hours"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <ProgressBar
+                    android:id="@+id/progressBarHorizontalHike"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:max="100"
+                    android:progress="38"
+                    android:progressDrawable="@drawable/custom_progressbar" />
+
+                <TextView
+                    android:id="@+id/progressTextHike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="38%"
+                    android:textColor="@color/black"
+                    android:textSize="26sp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="30dp">
+
+        <Button
+            android:id="@+id/ButtonSetGoals"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Set Goals" />
+
+        <Button
+            android:id="@+id/ButtonBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Back" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewChangePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/blue"
+        android:text="@string/Change_Password"
+        />
+
+
+
+</LinearLayout>

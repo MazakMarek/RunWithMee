@@ -20,22 +20,11 @@ import com.example.runwithme.ui.theme.RunWithMeTheme
 
 class MainActivity : ComponentActivity() {
 
-    lateinit var userEmail: EditText
-    lateinit var userPassword: EditText
-    lateinit var loginButton: Button
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
 
-        userEmail = findViewById(R.id.email)
-        userPassword = findViewById(R.id.password)
-        loginButton = findViewById(R.id.login_button)
 
-        loginButton.setOnClickListener {
-            val email = userEmail.text.toString()
-            val password = userPassword.text.toString()
-        }
 
 
 //        enableEdgeToEdge()
