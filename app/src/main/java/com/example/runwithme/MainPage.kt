@@ -1,5 +1,6 @@
 package com.example.runwithme
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,6 +31,22 @@ class MainPage : ComponentActivity() {
         super.onCreate(savedInstanceState)
         binding = MainPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val profileImage = binding.profileImage
+        val startButton = binding.startActivityButton
+
+        profileImage.setOnClickListener {
+            val intent = Intent(this, ProfilePage::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            }
+            startActivity(intent)
+        }
+
+        startButton.setOnClickListener {
+            val intent = Intent(this, StartActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+            }
+            startActivity(intent)
+        }
     }
 
     @Composable
