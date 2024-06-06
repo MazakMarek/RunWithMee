@@ -140,7 +140,7 @@
             android:id="@+id/textViewHiking"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Running: "
+            android:text="Hiking: "
             android:textSize="18sp"
             />
 

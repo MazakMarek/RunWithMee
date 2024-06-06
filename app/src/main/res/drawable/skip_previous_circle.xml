@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Circle shape -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#605D5D"/> <!-- Change the color to your desired circle color -->
+            <size android:width="48dp" android:height="48dp"/>
+        </shape>
+    </item>
+    <!-- Skip previous icon -->
+    <item android:drawable="@drawable/skip_previous" android:gravity="center"/>
+</layer-list>

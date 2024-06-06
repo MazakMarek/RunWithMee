@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Running"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        >
+
+
+        <TextView
+            android:id="@+id/distanceLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance"
+            android:textSize="28sp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/distanceValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="4 KM"
+            android:textSize="36sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            />
+
+        <TextView
+            android:id="@+id/TimeLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textSize="28sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:id="@+id/TimeValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="4 HOURS"
+            android:textSize="36sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            />
+
+        <TextView
+            android:id="@+id/averageSpeedLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Average speed"
+            android:textSize="28sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:id="@+id/averageSpeedValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="4 KM"
+            android:textSize="36sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            />
+
+        <Button
+            android:id="@+id/stopButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Zastav"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/songNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:text="We are the champions"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_marginBottom="8dp"
+        android:progress="38"
+        android:progressDrawable="@drawable/custom_progressbar"/>
+
+    <LinearLayout
+        android:id="@+id/mediaControlsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/previousButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/skip_previous_circle" />
+
+        <ImageButton
+            android:id="@+id/playPauseButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/pause_music" />
+
+        <ImageButton
+            android:id="@+id/nextButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:src="@drawable/skip_next_circle" />
+    </LinearLayout>
+
+
+
+</LinearLayout>
