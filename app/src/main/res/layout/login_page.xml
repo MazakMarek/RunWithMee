@@ -9,7 +9,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Prihlásenie"
+        android:text="Log-In"
         android:layout_gravity="center"
         android:textSize="50sp"
         android:textAlignment="center"
