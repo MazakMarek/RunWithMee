@@ -2,6 +2,7 @@ package com.example.runwithme
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import com.example.runwithme.databinding.ProfilePageBinding
@@ -21,10 +22,11 @@ class ProfilePage : ComponentActivity() {
 
         changePasswordTextView.setOnClickListener {
             val intent = Intent(this, PasswordChangeActivity::class.java)
+            Log.d("ProfilePage", "Changing password")
             startActivity(intent)
         }
         backButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MainPage::class.java)
             startActivity(intent)
         }
     }

@@ -8,5 +8,5 @@
         </shape>
     </item>
     <!-- Pause icon -->
-    <item android:drawable="@drawable/pause" android:gravity="center"/>
+    <item android:drawable="@drawable/play" android:gravity="center"/>
 </layer-list>

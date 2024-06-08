@@ -2,6 +2,7 @@ package com.example.runwithme
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -19,6 +20,7 @@ import com.example.runwithme.databinding.LoginPageBinding
 import com.example.runwithme.databinding.MainPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.example.runwithme.StartActivity
 
 class MainPage : ComponentActivity() {
 
@@ -33,6 +35,18 @@ class MainPage : ComponentActivity() {
         setContentView(binding.root)
         val profileImage = binding.profileImage
         val startButton = binding.startActivityButton
+
+
+        firebaseAuth.addAuthStateListener { firebaseAuth ->
+            val user = firebaseAuth.currentUser
+            if (user == null) {
+                // User is signed out
+                Log.d("TAG", "onAuthStateChanged:signed_out")
+            } else {
+                // User is signed in
+                Log.d("TAG", "onAuthStateChanged:signed_in:" + user.uid)
+            }
+        }
 
         profileImage.setOnClickListener {
             val intent = Intent(this, ProfilePage::class.java).apply {

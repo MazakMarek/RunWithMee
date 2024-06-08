@@ -64,21 +64,21 @@
             />
 
         <TextView
-            android:id="@+id/averageSpeedLabelTextView"
+            android:id="@+id/SpeedLabelTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Average speed"
+            android:text="Speed"
             android:textSize="28sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"/>
 
         <TextView
-            android:id="@+id/averageSpeedValueTextView"
+            android:id="@+id/SpeedValueTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="4 KM"
+            android:text="4 KM/s"
             android:textSize="36sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
