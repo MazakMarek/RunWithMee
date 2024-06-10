@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import com.example.runwithme.databinding.LoginPageBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 
 class LoginActivity : ComponentActivity() {
 
@@ -33,13 +35,21 @@ class LoginActivity : ComponentActivity() {
                 }
 
             }else {
-               firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                   if (it.isSuccessful) {
-                       startActivity(Intent(this, MainPage::class.java))
-                   }else {
-                       binding.password.error = "Incorrect password"
-                   }
-               }
+                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        startActivity(Intent(this, MainPage::class.java))
+                    } else {
+                        binding.password.error = "Incorrect password"
+                    }
+                }.addOnFailureListener { exception ->
+                    // Handle the exception here
+                    when (exception) {
+
+                        is FirebaseAuthInvalidCredentialsException -> binding.password.error = "Invalid credentials"
+                        is FirebaseAuthInvalidUserException -> binding.email.error = "Invalid user"
+                        else -> binding.password.error = exception.message + "112233"
+                    }
+                }
 
             }
         }

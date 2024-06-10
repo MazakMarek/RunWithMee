@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="4 KM"
+            android:text="0.0 KM"
             android:textSize="36sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="4 HOURS"
+            android:text="0:0:0"
             android:textSize="36sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
@@ -78,18 +78,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="4 KM/s"
+            android:text="0 KM/s"
             android:textSize="36sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
             />
 
         <Button
-            android:id="@+id/stopButton"
+            android:id="@+id/stopActivityButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Zastav"
+            android:text="Stop Activity"
             android:layout_marginTop="30dp"/>
 
     </LinearLayout>
