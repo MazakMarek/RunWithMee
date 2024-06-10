@@ -1,6 +1,7 @@
 package com.example.runwithme
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationListener
 import android.location.LocationManager
@@ -19,6 +20,16 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.example.yourapp.PasswordChangeActivity
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.database
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 class StartActivity : ComponentActivity() {
 
@@ -37,17 +48,22 @@ class StartActivity : ComponentActivity() {
     private var lightSensor: Sensor? = null
     private var isDark = false
     private var isClose = false
+    private lateinit var totalDuration: String
+    private var sumAverageSpeed = 0.0
+    private var totalSpeedCounter = 0
 
     private val locationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
             Log.d("LocationUpdates", "onLocationChanged called")
-            lastLocation?.let {
-                totalDistance += it.distanceTo(location) / 1000 // convert to kilometers
+
+                totalDistance += location.distanceTo(location) / 1000 // convert to kilometers
                 val roundedDistance = String.format("%.1f", totalDistance)
                 binding.distanceValueTextView.setText("$roundedDistance KM")
-            }
-            lastLocation = location
+                Log.d("LocationUpdates", "onLocationChanged called")
+
             val speed = location.speed * 3.6
+            sumAverageSpeed += speed
+            totalSpeedCounter++
             val roundedSpeed = String.format("%.1f", speed)
             binding.SpeedValueTextView.setText("$roundedSpeed km/h")
         }
@@ -74,11 +90,13 @@ class StartActivity : ComponentActivity() {
             val hours = TimeUnit.MILLISECONDS.toHours(millis)
             val minutes = TimeUnit.MILLISECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1)
             val seconds = TimeUnit.MILLISECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1)
+            totalDuration = String.format("%02d:%02d:%02d", hours, minutes, seconds)
             binding.TimeValueTextView.setText("$hours:$minutes:$seconds")
             handler.postDelayed(this, 1000)
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPageBinding.inflate(layoutInflater)
@@ -94,6 +112,16 @@ class StartActivity : ComponentActivity() {
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
+
+        if (proximitySensor == null) {
+            Log.e("StartActivity", "Proximity sensor not available.")
+            // Handle the absence of the proximity sensor
+        }
+
+        if (lightSensor == null) {
+            Log.e("StartActivity", "Light sensor not available.")
+            // Handle the absence of the light sensor
+        }
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.d("LocationUpdates", "Requesting location permissions")
@@ -126,29 +154,48 @@ class StartActivity : ComponentActivity() {
             currentSongIndex = if (currentSongIndex < songs.size - 1) currentSongIndex + 1 else 0
             playSong(currentSongIndex)
         }
-    }
 
-    private val sensorListener = object : SensorEventListener {
-        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
-        }
+        binding.stopActivityButton.setOnClickListener {
+            val currentDate = LocalDate.now()
+            val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+            val formattedDate = currentDate.format(formatter)
+            val currentTime = LocalTime.now()
+            val formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss")
+            val formattedTime = currentTime.format(formatterTime)
+            val averageSpeed = sumAverageSpeed / totalSpeedCounter
 
-        override fun onSensorChanged(event: SensorEvent) {
-            when (event.sensor.type) {
-                Sensor.TYPE_PROXIMITY -> {
-                    isClose = event.values[0] < 0.5
-                }
-                Sensor.TYPE_LIGHT -> {
-                    isDark = event.values[0] < 5
-                }
-            }
+            var activityData = ActivityData(
+                totalDistance,totalDuration,formattedDate,formattedTime,averageSpeed
+            )
 
-            val isInPocket = isClose && isDark
-            binding.playPauseButton.isEnabled = !isInPocket
-            binding.nextButton.isEnabled = !isInPocket
-            binding.previousButton.isEnabled = !isInPocket
-            binding.stopActivityButton.isEnabled = !isInPocket
+            sendActivityData(activityData)
+            mediaPlayer.stop()
+            //val intent = Intent(this, MainPage::class.java)
+           // startActivity(intent)
         }
     }
+
+//    private val sensorListener = object : SensorEventListener {
+//        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+//        }
+//
+//        override fun onSensorChanged(event: SensorEvent) {
+//            when (event.sensor.type) {
+//                Sensor.TYPE_PROXIMITY -> {
+//                    isClose = event.values[0] < 0.5
+//                }
+//                Sensor.TYPE_LIGHT -> {
+//                    isDark = event.values[0] < 5
+//                }
+//            }
+//
+//            val isInPocket = isClose && isDark
+//            binding.playPauseButton.isEnabled = !isInPocket
+//            binding.nextButton.isEnabled = !isInPocket
+//            binding.previousButton.isEnabled = !isInPocket
+//            binding.stopActivityButton.isEnabled = !isInPocket
+//        }
+//    }
 
     private fun playSong(index: Int) {
         if (this::mediaPlayer.isInitialized) {
@@ -167,22 +214,46 @@ class StartActivity : ComponentActivity() {
         binding.playPauseButton.setImageResource(R.drawable.play_music)
     }
 
-    override fun onResume() {
-        super.onResume()
-        proximitySensor?.also { proximity ->
-            sensorManager.registerListener(sensorListener, proximity, SensorManager.SENSOR_DELAY_NORMAL)
-        }
-        lightSensor?.also { light ->
-            sensorManager.registerListener(sensorListener, light, SensorManager.SENSOR_DELAY_NORMAL)
-        }
-    }
-    override fun onPause() {
-        super.onPause()
-        sensorManager.unregisterListener(sensorListener)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        proximitySensor?.also { proximity ->
+//            sensorManager.registerListener(sensorListener, proximity, SensorManager.SENSOR_DELAY_NORMAL)
+//        }
+//        lightSensor?.also { light ->
+//            sensorManager.registerListener(sensorListener, light, SensorManager.SENSOR_DELAY_NORMAL)
+//        }
+//    }
+//    override fun onPause() {
+//        super.onPause()
+//        sensorManager.unregisterListener(sensorListener)
+//    }
     override fun onDestroy() {
         super.onDestroy()
         handler.removeCallbacks(updateProgressRunnable)
         mediaPlayer.release()
+    }
+
+    private fun sendActivityData(activityData: ActivityData){
+        val database = Firebase.database
+        val databaseReference = FirebaseDatabase.getInstance().reference
+        val userID = "2" // FirebaseAuth.getInstance().currentUser!!.uid
+        val reference = database.getReference("activity")
+
+
+        val newChild = reference.child(userID).push()
+            val key = newChild.key
+
+                reference.child(userID).child(key!!)
+            .setValue(activityData)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("StartActivity", "Successfully wrote activity data")
+                } else {
+                    Log.e("StartActivity", "Failed to write activity data")
+                }
+            }
+                    .addOnFailureListener { exception ->
+                        Log.e("ErrorDatabase", "Failed to write activity data", exception)
+                    }
     }
 }

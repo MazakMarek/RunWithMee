@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="8dp"
-        android:text="We are the champions"
+        android:text=""
         android:textSize="20sp"
         android:layout_marginTop="30dp"/>
 
